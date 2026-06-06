@@ -1,0 +1,24 @@
+[project]
+name = "screen-text-reader"
+version = "0.1.0"
+description = "Read on-screen game dialogue aloud with OCR and local TTS."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "keyboard>=0.13.5",
+    "mss>=10.2.0",
+    "numpy>=2.4.6",
+    "pillow>=12.2.0",
+    "piper-tts>=1.4.2",
+    "psutil>=7.2.2",
+    "pywin32>=312",
+    "sounddevice>=0.5.5",
+    "winsdk>=1.0.0b10",
+]
+
+[project.scripts]
+screen-text-reader = "main:main"
+
+[tool.basedpyright]
+venvPath = "."
+venv = ".venv"

@@ -1,0 +1,29 @@
+{
+  "global_hotkey": "f9",
+  "poll_interval_seconds": 5,
+  "tts_voice": "de_DE-thorsten-medium",
+  "ocr_language": "de-DE",
+  "profiles": [
+    {
+      "id": "example-game",
+      "display_name": "Example Game",
+      "process_name": "example.exe",
+      "use_full_screen": true,
+      "region": null,
+      "hotkey": null
+    },
+    {
+      "id": "profile-2",
+      "display_name": "New Profile",
+      "process_name": "game.exe",
+      "use_full_screen": false,
+      "region": {
+        "left": 661,
+        "top": 923,
+        "width": 337,
+        "height": 29
+      },
+      "hotkey": null
+    }
+  ]
+}
