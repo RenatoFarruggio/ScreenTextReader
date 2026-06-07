@@ -12,7 +12,7 @@ Required on the machine:
 
 - Windows 10/11.
 - Python 3.12, managed by `uv` for this project.
-- `uv` installed and available as `uv.exe`.
+- `uv` installed.
 - Windows OCR language `de-DE` installed.
 - Audio output device available for `sounddevice`.
 
@@ -22,23 +22,20 @@ If `uv` is missing, install it first:
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-What has been installed/downloaded in this working copy:
-
-- `uv` is available at `C:\Users\Bob\.local\bin\uv.exe`.
-- Project dependencies were installed with:
+From the project directory:
 
 ```powershell
-uv add psutil keyboard mss Pillow numpy piper-tts sounddevice winsdk pywin32
+uv sync
+uv run python -c "from src.tts import ensure_voice; ensure_voice('de_DE-thorsten-medium')"
 ```
 
-- The local virtual environment was created at `.venv`.
-- The German Piper voice was downloaded to:
+That downloads the German Piper voice to:
 
 ```text
-C:\Users\Bob\AppData\Local\ScreenTextReader\voices\de_DE-thorsten-medium\
+C:\Users\<User>\AppData\Local\ScreenTextReader\voices\de_DE-thorsten-medium\
 ```
 
-It is also okay to download the two files manually from a Piper voice list such as
+Alternatively, download the two files manually from a Piper voice list such as
 `https://docs.gladecore.com/files/piper-voice-models`. The app needs both matching files:
 
 ```text
@@ -49,17 +46,7 @@ de_DE-thorsten-medium.onnx.json
 Place them in:
 
 ```text
-C:\Users\Bob\AppData\Local\ScreenTextReader\voices\de_DE-thorsten-medium\
-```
-
-The manually downloaded files from this project root were moved there.
-
-To set up from scratch on another machine:
-
-```powershell
-cd C:\Users\Bob\Documents\ScreenTextReader
-uv sync
-uv run python -c "from src.tts import ensure_voice; ensure_voice('de_DE-thorsten-medium')"
+C:\Users\<User>\AppData\Local\ScreenTextReader\voices\de_DE-thorsten-medium\
 ```
 
 Check installed Windows OCR languages:
@@ -103,11 +90,6 @@ The included sample images verify OCR preprocessing and text recognition:
 uv run scripts/test_ocr.py
 ```
 
-Current result on this machine with `de-DE` Windows OCR:
-
-- `sample_text_pipistrello.png`: 100% similarity.
-- `sample_text_easy.png`: 100% similarity.
-
 OCR output joins recognized lines with spaces before sending text to TTS, so dialogue split
 over multiple lines is spoken as one sentence instead of containing newline characters.
 
@@ -127,7 +109,7 @@ Hallo, dies ist ein deutscher Test der Sprachausgabe.
 
 ## Notes
 
-- `autoclicker.py` is kept unchanged and only served as the process-monitoring reference.
 - OCR preprocessing currently converts screenshots to black/white with a fixed threshold
-  selected from the sample images. It also scales very small text regions before OCR.
+selected from the sample images. It also scales very small text regions before OCR.
 - Piper TTS runs locally and uses the `de_DE-thorsten-medium` voice by default.
+
