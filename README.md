@@ -4,6 +4,9 @@ ScreenTextReader reads visible game dialogue aloud on Windows. It detects config
 processes, enables a global hotkey while a configured game is running, captures the whole
 screen or a saved region, runs Windows OCR, and speaks the recognized text with local Piper TTS.
 
+Many games still show dialogue as on-screen text without full voice acting. This helps when
+you would rather hear the lines spoken than read them yourself.
+
 ## Disclaimer
 
 This project is in beta and early development, not ready for general use. It works
@@ -13,6 +16,10 @@ you need to understand the setup steps below to get it working.
 The project is currently set up for German dialogue: Windows OCR `de-DE` and the Piper voice
 `de_DE-thorsten-medium`. English or other languages are not covered by the default setup, but switching to other languages is possible without much effort.
 
+The default Piper voice sounds very "AI-like" — do not expect world-class voice acting with
+this setup. On the positive side, Windows OCR and Piper TTS both run locally on CPU, so the
+stack should work on lower-end machines without a dedicated GPU.
+
 ## Setup
 
 This project uses `uv` for the Python environment and dependency management.
@@ -20,6 +27,9 @@ This project uses `uv` for the Python environment and dependency management.
 Required on the machine:
 
 - Windows 10/11.
+- **Hardware:** 4 GB RAM minimum (8 GB recommended when a game runs at the same time). A
+  modern dual-core x64 CPU is enough for OCR and TTS on CPU; no GPU is required. Allow ~500 MB
+  disk space for Python dependencies and the Piper voice model.
 - Python 3.12, managed by `uv` for this project.
 - `uv` installed.
 - Windows OCR language `de-DE` installed.
